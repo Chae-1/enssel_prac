@@ -34,4 +34,36 @@ public class User {
 
     @Column(name = "USE_YN", columnDefinition = "varchar(1) not null default 'Y'")
     private String useYn;
+
+    public String getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public LocalDateTime getRegisterDateTime() {
+        return registerDateTime;
+    }
+
+    public String getRegisterUserId() {
+        return registerUserId;
+    }
+
+    public LocalDateTime getUpdateDateTime() {
+        return updateDateTime;
+    }
+
+    public String getUpdateUserId() {
+        return updateUserId;
+    }
+
+    public String getUseYn() {
+        return useYn;
+    }
 }
