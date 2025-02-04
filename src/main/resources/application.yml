@@ -1,0 +1,14 @@
+server:
+  port: 8082
+spring:
+  application:
+    name: en_practice
+  datasource:
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: jdbc:sqlserver://;serverName=localhost;databaseName=test5;encrypt=false;
+    password: Enssel123!
+    username: sa
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
