@@ -24,6 +24,7 @@ public class UserSelectController {
     @GetMapping("/table")
     public ApiResponse<List<UserSummary>> getAllUsers() {
         List<UserSummary> userSummaries = userService.findAllUsers();
+
         return ok(userSummaries);
     }
 }

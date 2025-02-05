@@ -26,6 +26,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<UserSummary> findAllUsers() {
+
         return userRepository.findAll()
                 .stream()
                 .map(UserSummary::from)
@@ -35,6 +36,7 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public boolean saveUser(UserCreateRequest userCreateRequest) {
+        log.info("Saving user {}", userCreateRequest);
         try {
             User user = userCreateRequest.toEntity();
             userRepository.save(user);

@@ -10,6 +10,9 @@ import java.time.LocalDateTime;
                 @UniqueConstraint(name = "pk_test_user", columnNames = "USER_ID")
         })
 public class User {
+
+    private static final String DEFAULT_USE_YN = "Y";
+
     @Id
     @Column(name = "USER_ID", nullable = false, length = 20)
     private String id;
@@ -39,7 +42,7 @@ public class User {
     @PrePersist
     public void prePersist() {
         if (this.useYn == null) {
-            this.useYn = "Y";
+            this.useYn = DEFAULT_USE_YN;
         }
 
         if (this.registerDateTime == null) {
@@ -65,7 +68,7 @@ public class User {
     public static User ofNew(String id, String name,
                              String password, String registerUserId) {
         return new User(id, name, password, null, registerUserId,
-                null, null, null);
+                null, null, DEFAULT_USE_YN);
     }
 
     public String getId() {

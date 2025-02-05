@@ -5,6 +5,7 @@ import com.ensselprac.api.user.service.UserService;
 import com.ensselprac.domain.user.request.UserCreateRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -18,9 +19,10 @@ public class UserCreateController {
         this.userService = userService;
     }
 
+    // todo: hibernate validate
+    // 검증 로직을 추가.
     @PostMapping("/regiUser")
     public ApiResponse<Boolean> createUser(@RequestBody UserCreateRequest userCreateRequest) {
-        log.info(userCreateRequest.toString());
         return ApiResponse.ok(userService.saveUser(userCreateRequest));
     }
 }
