@@ -2,7 +2,7 @@ package com.ensselprac.api.user.controller;
 
 import com.ensselprac.api.ApiResponse;
 import com.ensselprac.api.user.service.UserService;
-import com.ensselprac.domain.user.response.UserResponse;
+import com.ensselprac.domain.user.response.UserSummary;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,8 +22,8 @@ public class UserSelectController {
     }
 
     @GetMapping("/table")
-    public ApiResponse<List<UserResponse>> getAllUsers() {
-        List<UserResponse> userResponses = userService.findAllUsers();
-        return ok(userResponses);
+    public ApiResponse<List<UserSummary>> getAllUsers() {
+        List<UserSummary> userSummaries = userService.findAllUsers();
+        return ok(userSummaries);
     }
 }

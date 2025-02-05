@@ -32,8 +32,41 @@ public class User {
     @Column(name = "UPDA_USER", length = 10)
     private String updateUserId;
 
+    // todo: 사용여부에 따라 다른 동작이 있다면 Enum으로 바꾸자.
     @Column(name = "USE_YN", columnDefinition = "varchar(1) not null default 'Y'")
     private String useYn;
+
+    @PrePersist
+    public void prePersist() {
+        if (this.useYn == null) {
+            this.useYn = "Y";
+        }
+
+        if (this.registerDateTime == null) {
+            this.registerDateTime = LocalDateTime.now();
+        }
+    }
+
+    protected User() {
+    }
+
+    private User(String id, String name, String password, LocalDateTime registerDateTime, String registerUserId,
+                 LocalDateTime updateDateTime, String updateUserId, String useYn) {
+        this.id = id;
+        this.name = name;
+        this.password = password;
+        this.registerDateTime = registerDateTime;
+        this.registerUserId = registerUserId;
+        this.updateDateTime = updateDateTime;
+        this.updateUserId = updateUserId;
+        this.useYn = useYn;
+    }
+
+    public static User ofNew(String id, String name,
+                             String password, String registerUserId) {
+        return new User(id, name, password, null, registerUserId,
+                null, null, null);
+    }
 
     public String getId() {
         return id;

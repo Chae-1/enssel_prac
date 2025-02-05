@@ -1,10 +1,13 @@
 package com.ensselprac.api.user.service;
 
-import com.ensselprac.domain.user.response.UserResponse;
+import com.ensselprac.domain.user.request.UserCreateRequest;
+import com.ensselprac.domain.user.response.UserSummary;
 
 import java.util.List;
 
 public interface UserService {
 
-    List<UserResponse> findAllUsers();
+    List<UserSummary> findAllUsers();
+
+    boolean saveUser(UserCreateRequest userCreateRequest);
 }
