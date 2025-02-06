@@ -11,7 +11,10 @@ import java.time.LocalDateTime;
         })
 public class User {
 
-    private static final String DEFAULT_USE_YN = "Y";
+    private static final String USE_Y = "Y";
+    private static final String USE_N = "N";
+
+    private static final String ADMIN_USER_NAME = "ADMIN";
 
     @Id
     @Column(name = "USER_ID", nullable = false, length = 20)
@@ -42,7 +45,7 @@ public class User {
     @PrePersist
     public void prePersist() {
         if (this.useYn == null) {
-            this.useYn = DEFAULT_USE_YN;
+            this.useYn = USE_Y;
         }
 
         if (this.registerDateTime == null) {
@@ -68,7 +71,7 @@ public class User {
     public static User ofNew(String id, String name,
                              String password, String registerUserId) {
         return new User(id, name, password, null, registerUserId,
-                null, null, DEFAULT_USE_YN);
+                null, null, USE_Y);
     }
 
     public String getId() {
@@ -101,5 +104,20 @@ public class User {
 
     public String getUseYn() {
         return useYn;
+    }
+
+    public void updateBy(String updateUser, String name, String password,
+                         LocalDateTime updateDateTime) {
+        this.updateDateTime = updateDateTime;
+        this.name = name;
+        this.password = password;
+        this.updateUserId = updateUser;
+    }
+
+    public void invalidate(String updateUser,
+                           LocalDateTime updateDateTime) {
+        this.updateDateTime = updateDateTime;
+        this.updateUserId = updateUser;
+        this.useYn = USE_N;
     }
 }

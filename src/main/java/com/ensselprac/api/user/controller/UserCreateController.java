@@ -3,10 +3,13 @@ package com.ensselprac.api.user.controller;
 import com.ensselprac.api.ApiResponse;
 import com.ensselprac.api.user.service.UserService;
 import com.ensselprac.domain.user.request.UserCreateRequest;
+import com.ensselprac.domain.user.request.UserInactivateRequest;
+import com.ensselprac.domain.user.request.UserUpdateRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDateTime;
 
 @RestController
 @RequestMapping("/bi/user")
@@ -19,10 +22,23 @@ public class UserCreateController {
         this.userService = userService;
     }
 
-    // todo: hibernate validate
-    // 검증 로직을 추가.
     @PostMapping("/regiUser")
     public ApiResponse<Boolean> createUser(@RequestBody UserCreateRequest userCreateRequest) {
         return ApiResponse.ok(userService.saveUser(userCreateRequest));
+    }
+
+    @PostMapping("/update")
+    public ApiResponse<Boolean> updateUserAndGet(@RequestBody UserUpdateRequest userUpdateRequest) {
+        // 파라미터를 전달하는 부분,
+        LocalDateTime updateDateTime = LocalDateTime.now();
+        String admin = "ADMIN";
+        return ApiResponse.ok(userService.updateUser(admin, userUpdateRequest, updateDateTime));
+    }
+
+    @PostMapping("/inactivate")
+    public ApiResponse<Boolean> invalidateUser(@RequestBody UserInactivateRequest userInactivateRequest) {
+        LocalDateTime updateDateTime = LocalDateTime.now();
+        String admin = "ADMIN";
+        return ApiResponse.ok(userService.invalidateUsers(admin, updateDateTime, userInactivateRequest));
     }
 }
