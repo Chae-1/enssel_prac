@@ -1,13 +1,15 @@
-package com.ensselprac.api.user.service.impl;
+package com.ensselprac.domain.user.service.impl;
 
-import com.ensselprac.api.user.service.UserService;
+import com.ensselprac.domain.user.request.UserSearchCondition;
+import com.ensselprac.domain.user.service.UserService;
 import com.ensselprac.domain.user.User;
-import com.ensselprac.domain.user.UserRepository;
+import com.ensselprac.domain.user.repository.UserRepository;
 import com.ensselprac.domain.user.exception.UserNotFoundException;
 import com.ensselprac.domain.user.request.UserCreateRequest;
 import com.ensselprac.domain.user.request.UserInactivateRequest;
 import com.ensselprac.domain.user.request.UserUpdateRequest;
 import com.ensselprac.domain.user.response.UserSummary;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -29,9 +31,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserSummary> findAllUsers() {
-
-        return userRepository.findAll()
+    public List<UserSummary> findUsersOnCondition(UserSearchCondition condition) {
+        return userRepository.findAllByCondition(condition)
                 .stream()
                 .map(UserSummary::from)
                 .toList();
@@ -75,6 +76,7 @@ public class UserServiceImpl implements UserService {
 
     private void invalidateUsers(String updateUserId,
                                         LocalDateTime updateDateTime, List<User> users) {
-        users.forEach(user -> user.invalidate(updateUserId, updateDateTime));
+        users.forEach(user
+                -> user.invalidate(updateUserId, updateDateTime));
     }
 }

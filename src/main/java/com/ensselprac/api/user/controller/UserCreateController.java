@@ -1,7 +1,7 @@
 package com.ensselprac.api.user.controller;
 
 import com.ensselprac.api.ApiResponse;
-import com.ensselprac.api.user.service.UserService;
+import com.ensselprac.domain.user.service.UserService;
 import com.ensselprac.domain.user.request.UserCreateRequest;
 import com.ensselprac.domain.user.request.UserInactivateRequest;
 import com.ensselprac.domain.user.request.UserUpdateRequest;
