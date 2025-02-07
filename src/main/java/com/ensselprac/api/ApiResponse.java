@@ -3,9 +3,9 @@ package com.ensselprac.api;
 import org.springframework.http.HttpStatus;
 
 public class ApiResponse<T> {
-    private T data;
-    private HttpStatus status;
-    private String message;
+    private final T data;
+    private final HttpStatus status;
+    private final String message;
 
     private ApiResponse(T data, HttpStatus status, String message) {
         this.data = data;

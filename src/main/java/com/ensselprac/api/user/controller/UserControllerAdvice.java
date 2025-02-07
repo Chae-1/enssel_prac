@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-@RestControllerAdvice(basePackages = "com.ensselprac.api.user.*")
+@RestControllerAdvice(basePackages = "com.ensselprac.api.user.controller")
 public class UserControllerAdvice {
 
     @ExceptionHandler(UserNotFoundException.class)

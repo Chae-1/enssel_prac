@@ -1,10 +1,9 @@
 package com.ensselprac.domain.user;
 
-import org.assertj.core.api.Assertions;
+import com.ensselprac.domain.user.repository.UserRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.sql.DataSource;

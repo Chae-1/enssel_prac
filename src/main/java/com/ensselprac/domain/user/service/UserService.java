@@ -1,7 +1,8 @@
-package com.ensselprac.api.user.service;
+package com.ensselprac.domain.user.service;
 
 import com.ensselprac.domain.user.request.UserCreateRequest;
 import com.ensselprac.domain.user.request.UserInactivateRequest;
+import com.ensselprac.domain.user.request.UserSearchCondition;
 import com.ensselprac.domain.user.request.UserUpdateRequest;
 import com.ensselprac.domain.user.response.UserSummary;
 
@@ -9,8 +10,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public interface UserService {
-
-    List<UserSummary> findAllUsers();
 
     boolean saveUser(UserCreateRequest userCreateRequest);
 
@@ -20,4 +19,6 @@ public interface UserService {
 
     boolean invalidateUsers(String updateUserId, LocalDateTime updateDateTime,
                             UserInactivateRequest userInactivateRequest);
+
+    List<UserSummary> findUsersOnCondition(UserSearchCondition condition);
 }
