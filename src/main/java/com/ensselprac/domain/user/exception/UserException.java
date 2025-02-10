@@ -6,11 +6,11 @@ public class UserException extends RuntimeException {
         super(message);
     }
 
-    public UserException(Throwable cause) {
+    public UserException(UserException cause) {
         super(cause);
     }
 
-    public UserException(String message, Throwable cause) {
+    public UserException(String message, UserException cause) {
         super(message, cause);
     }
 }

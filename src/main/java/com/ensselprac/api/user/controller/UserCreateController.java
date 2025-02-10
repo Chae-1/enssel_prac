@@ -24,7 +24,9 @@ public class UserCreateController {
 
     @PostMapping("/regiUser")
     public ApiResponse<Boolean> createUser(@RequestBody UserCreateRequest userCreateRequest) {
-        return ApiResponse.ok(userService.saveUser(userCreateRequest));
+        log.info("사용자 등록 요청 정보 : {}", userCreateRequest);
+        boolean saveResult = userService.saveUser(userCreateRequest);
+        return ApiResponse.ok(saveResult);
     }
 
     @PostMapping("/update")

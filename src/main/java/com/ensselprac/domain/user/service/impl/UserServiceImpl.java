@@ -1,5 +1,6 @@
 package com.ensselprac.domain.user.service.impl;
 
+import com.ensselprac.domain.user.exception.AlreadyExistUserException;
 import com.ensselprac.domain.user.request.UserSearchCondition;
 import com.ensselprac.domain.user.service.UserService;
 import com.ensselprac.domain.user.User;
@@ -41,15 +42,15 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public boolean saveUser(UserCreateRequest userCreateRequest) {
-        log.info("Saving user {}", userCreateRequest);
-        try {
-            User user = userCreateRequest.toEntity();
-            userRepository.save(user);
-            return true;
-        } catch (Exception e) {
-            log.error("Error while saving user", e);
-            throw new UserNotFoundException(e);
+        // 이미 등록되어 있는 유저의 경우.
+        if (userRepository.existsById(userCreateRequest.id())) {
+            throw new AlreadyExistUserException();
         }
+
+        User user = userCreateRequest.toEntity();
+        userRepository.save(user);
+        log.info("성공적으로 등록에 완료했습니다.");
+        return true;
     }
 
     @Override
@@ -75,7 +76,7 @@ public class UserServiceImpl implements UserService {
     }
 
     private void invalidateUsers(String updateUserId,
-                                        LocalDateTime updateDateTime, List<User> users) {
+                                 LocalDateTime updateDateTime, List<User> users) {
         users.forEach(user
                 -> user.invalidate(updateUserId, updateDateTime));
     }

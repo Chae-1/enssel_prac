@@ -10,7 +10,7 @@ public class UserNotFoundException extends UserException {
         super(message);
     }
 
-    public UserNotFoundException(Throwable cause) {
+    public UserNotFoundException(UserException cause) {
         super(cause);
     }
 }

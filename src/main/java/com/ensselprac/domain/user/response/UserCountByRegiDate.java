@@ -1,4 +1,7 @@
 package com.ensselprac.domain.user.response;
 
-public class UserCountByRegiDate {
+import java.time.LocalDateTime;
+
+public record UserCountByRegiDate(LocalDateTime regiDateTime,
+                                  int count) {
 }
