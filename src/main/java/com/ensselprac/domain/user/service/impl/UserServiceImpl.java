@@ -1,6 +1,7 @@
 package com.ensselprac.domain.user.service.impl;
 
 import com.ensselprac.domain.user.exception.AlreadyExistUserException;
+
 import com.ensselprac.domain.user.request.UserSearchCondition;
 import com.ensselprac.domain.user.service.UserService;
 import com.ensselprac.domain.user.User;
@@ -77,6 +78,7 @@ public class UserServiceImpl implements UserService {
 
     private void invalidateUsers(String updateUserId,
                                  LocalDateTime updateDateTime, List<User> users) {
+
         users.forEach(user
                 -> user.invalidate(updateUserId, updateDateTime));
     }

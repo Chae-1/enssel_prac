@@ -5,11 +5,14 @@ import com.ensselprac.domain.user.request.UserSearchCondition;
 import com.ensselprac.domain.user.response.UserCountByRegiDate;
 import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.Projections;
+import com.querydsl.core.types.Predicate;
+import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.core.types.dsl.DateTimePath;
 import com.querydsl.core.types.dsl.StringPath;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -61,7 +64,6 @@ public class CustomizeUserRepositoryImpl implements CustomizeUserRepository {
                 .fetch();
     }
 
-
     private Predicate filterByDateRange(DateTimePath<LocalDateTime> dateTime,
                                   LocalDateTime from, LocalDateTime to) {
         if (from == null && to == null) {
@@ -90,5 +92,6 @@ public class CustomizeUserRepositoryImpl implements CustomizeUserRepository {
 
     private String likePattern(String value) {
         return value + "%";
+
     }
 }
