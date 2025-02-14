@@ -2,7 +2,7 @@ server:
   port: 8082
 spring:
   application:
-    name: en_practice
+    name: user-service
   datasource:
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
     url: jdbc:sqlserver://;serverName=localhost;databaseName=test5;encrypt=false;
@@ -12,3 +12,10 @@ spring:
     hibernate:
       ddl-auto: validate
     show-sql: true
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:12300/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+

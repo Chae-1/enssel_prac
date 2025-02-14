@@ -18,6 +18,7 @@ import static com.ensselprac.api.ApiResponse.ok;
 public class UserSelectController {
 
     private static final Logger log = LoggerFactory.getLogger(UserSelectController.class);
+
     private final UserService userService;
 
     public UserSelectController(UserService userService) {

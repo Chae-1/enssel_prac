@@ -25,9 +25,10 @@ public class CustomizeUserRepositoryImpl implements CustomizeUserRepository {
 
     @Override
     public List<User> findAllByCondition(UserSearchCondition searchCondition) {
+        String useYn = searchCondition.useYn();
         return queryFactory
                 .selectFrom(user)
-                .where(user.useYn.eq(searchCondition.useYn()),
+                .where(user.useYn.eq(useYn == null ? "Y" : useYn),
                         likeAt(user.name, searchCondition.name()),
                         likeAt(user.id, searchCondition.id()),
                         likeAt(user.registerUserId, searchCondition.registerUserId()),

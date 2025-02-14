@@ -13,7 +13,6 @@ public class User {
 
     private static final String USE_Y = "Y";
     private static final String USE_N = "N";
-
     private static final String ADMIN_USER_NAME = "ADMIN";
 
     @Id
@@ -50,6 +49,10 @@ public class User {
 
         if (this.registerDateTime == null) {
             this.registerDateTime = LocalDateTime.now();
+        }
+
+        if (this.registerUserId == null) {
+            this.registerUserId = ADMIN_USER_NAME;
         }
     }
 
